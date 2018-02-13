@@ -64,19 +64,16 @@ private:
 };
 int main()
 {
-    //int N;
-    //cout<<"n"<<'\n';
-    //cin>>N;
-    vector<char*> v={"abcde"};
-    //cout<<"names"<<'\n';
-    //vert.push_back("abcde");
-    for ( char* n : v ) {
-        cout << n << '\n';
-    }
-    graf<bool> A(5);
-    //A.setgraf();
-    //A.fsfilling();
-    //A.showgraf();
+    int N;
+    cout<<"n"<<'\n';
+    cin>>N;
+
+   // cout<<"names"<<'\n';
+    vert.push_back("abcde");
+    graf<> A();
+    A.setgraf();
+    A.fsfilling();
+    A.showgraf();
     return 0;
 }
 

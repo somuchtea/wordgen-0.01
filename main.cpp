@@ -1,13 +1,16 @@
 #include <iostream>
 #include <vector>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 template <class T>
 class graf
 {
 public:
-    graf(int N)
+    graf(string s)
     {
-        n=N;
+        n=s.size();
+        names=s;
         ndgraf=new T*[n];
         for(int i=0;i<n;i++)
         {
@@ -24,8 +27,14 @@ public:
     }
     void showgraf()
     {
+        cout<<" ";
+        //for(int r=0;r<names.size();r++)
+        for(int r:names)
+            cout<<names[r];
+        cout<<'\n';
         for(int i=0;i<n;i++)
         {
+            cout<<names[i];
             for(int k=0;k<n;k++)
             {
                 cout<<ndgraf[i][k];
@@ -57,22 +66,33 @@ public:
 
         }
     }
+    void randfilling()
+    {
+        for(int i=0;i<n;i++)
+        {
+            for(int k=0;k<n;k++)
+            {
+                if(i==k)
+                    ndgraf[i][k]=0;
+                else{ndgraf[i][k]=rand()%2;}
+            }
 
+        }
+    }
 private:
     T **ndgraf,n;
+    string names;
 
 };
 int main()
 {
-    int N;
-    cout<<"n"<<'\n';
-    cin>>N;
-
-   // cout<<"names"<<'\n';
-    vert.push_back("abcde");
-    graf<> A();
-    A.setgraf();
-    A.fsfilling();
+    srand(time(0));
+    string s;
+    cout<<"names"<<'\n';
+    cin>>s;
+    graf<int> A(s);
+    //A.setgraf();
+    A.randfilling();
     A.showgraf();
     return 0;
 }

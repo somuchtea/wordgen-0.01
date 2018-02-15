@@ -1,5 +1,7 @@
 # depslib dependency file v1.0
-1518522713 source:c:\users\Сергей\desktop\wordgen-0.01\main.cpp
+1518676967 source:c:\users\Сергей\desktop\wordgen-0.01\main.cpp
 	<iostream>
 	<vector>
+	<ctime>
+	<cstdlib>
 

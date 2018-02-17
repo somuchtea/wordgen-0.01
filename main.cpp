@@ -9,27 +9,39 @@ class graf
 public:
     graf(string s)
     {
+        size_t pos=s.find(" -o");
+        if ( pos!= std::string::npos)
+            {
+                 isOrGraf=1;
+                 s.erase(pos,pos+2);
+            }
+        else
+            isOrGraf=0;
+
+
+
+
         n=s.size();
         names=s;
-        ndgraf=new T*[n];
+        adjacMatrix=new T*[n];
         for(int i=0;i<n;i++)
         {
-           ndgraf[i]=new T[n];
+           adjacMatrix[i]=new T[n];
         }
+        nullfilling();
     }
     ~graf()
     {
         for(int i=0;i<n;i++)
         {
-            delete []ndgraf[i];
+            delete []adjacMatrix[i];
         }
-        delete []ndgraf;
+        delete []adjacMatrix;
     }
     void showgraf()
     {
         cout<<" ";
-        //for(int r=0;r<names.size();r++)
-        for(int r:names)
+        for(int r=0;r<names.size();r++)
             cout<<names[r];
         cout<<'\n';
         for(int i=0;i<n;i++)
@@ -37,63 +49,36 @@ public:
             cout<<names[i];
             for(int k=0;k<n;k++)
             {
-                cout<<ndgraf[i][k];
+                cout<<adjacMatrix[i][k];
             }
             cout<<'\n';
         }
     }
-    void setgraf()
-    {
-        for(int i=0;i<n;i++)
-        {
-            for(int k=0;k<n;k++)
-            {
-                cin>>ndgraf[i][k];
-            }
-
-        }
-    }
-    void fsfilling()
-     {
-        for(int i=0;i<n;i++)
-        {
-            for(int k=0;k<n;k++)
-            {
-                if(i==k)
-                    ndgraf[i][k]=0;
-                else{ndgraf[i][k]=1;}
-            }
-
-        }
-    }
-    void randfilling()
-    {
-        for(int i=0;i<n;i++)
-        {
-            for(int k=0;k<n;k++)
-            {
-                if(i==k)
-                    ndgraf[i][k]=0;
-                else{ndgraf[i][k]=rand()%2;}
-            }
-
-        }
+    void setgraf()      {for(int i=0;i<n;i++){for(int k=0;k<n;k++){cin>>adjacMatrix[i][k];}}}
+    void nullfilling()  {for(int i=0;i<n;i++){for(int k=0;k<n;k++){adjacMatrix[i][k]=0;}}}
+    void randfilling()  {for(int i=0;i<n;i++){for(int k=0;k<n;k++){
+        if(i==k)
+            adjacMatrix[i][k]=0;
+        else{adjacMatrix[i][k]=rand()%2;}}}
+    if(!isOrGraf)
+    equaling();
     }
 private:
-    T **ndgraf,n;
+    void equaling()     {for(int i=0;i<n;i++){for(int k=i;k<n;k++){adjacMatrix[k][i]=adjacMatrix[i][k];}}}
+    T **adjacMatrix,n;
     string names;
+    bool isOrGraf;
 
 };
 int main()
 {
-    srand(time(0));
+    while(true)
+    {srand(time(0));
     string s;
-    cout<<"names"<<'\n';
-    cin>>s;
+    getline(std::cin,s);
     graf<int> A(s);
-    //A.setgraf();
     A.randfilling();
-    A.showgraf();
+    A.showgraf();}
     return 0;
 }
 
